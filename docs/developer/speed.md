@@ -44,6 +44,33 @@ In this case: with recompute (6 reads + 2 writes), no recompute (6 reads + 3 wri
 
 ## Kernel Speed (codegen)
 
+### Accelerator Setup Instructions
+
+To set up your environment for using accelerators with tinygrad, follow these steps:
+1. Ensure you have the necessary drivers installed for your GPU (e.g., NVIDIA drivers for CUDA).
+2. Install the required libraries for your chosen backend (e.g., CUDA Toolkit for CUDA, OpenCL SDK for OpenCL).
+3. Verify your installation by running the provided examples in the tinygrad repository.
+
+### Performance Comparison Examples
+
+To compare the performance of different accelerators, you can run benchmarks provided in the tinygrad examples. These benchmarks will help you understand the performance differences between CPU and GPU executions.
+
+### Backend-Specific Optimization Guides
+
+For optimizing performance on different backends:
+- **CUDA**: Utilize Tensor Cores and optimize memory access patterns.
+- **OpenCL**: Focus on kernel optimization and memory coalescing.
+- **METAL**: Leverage the GPU's parallel processing capabilities effectively.
+
+### Troubleshooting Common Accelerator Issues
+
+If you encounter issues while using accelerators, consider the following:
+- Ensure that your GPU drivers are up to date.
+- Check for compatibility between tinygrad and your hardware.
+- Review the error messages for hints on what might be wrong.
+
+
+
 Given that you have decided how the model ops will be grouped and what will be written to memory, kernel speed determines how fast that operation is done. This is what BEAM changes, it searches over a set of equivalent kernels which all perform the same operation and finds the one which performs the task the fastest.
 
 In `kernel.py` we have a set of `OptOps`, these control the parameters of the speed optimizations applied to the kernel.

@@ -29,6 +29,20 @@ tinygrad is now beta software, we [raised some money](https://geohot.github.io/b
 
 ## Features
 
+### Performance Comparison Examples
+
+To illustrate the performance differences between various accelerators, consider the following benchmarks:
+
+- **CPU vs GPU**: Running the same model on CPU and GPU can yield significant differences in training time. For example, a simple model may take 10x longer on CPU compared to GPU.
+- **CUDA vs OpenCL**: Depending on the implementation, CUDA may offer better performance for certain operations compared to OpenCL. Always benchmark your specific use case.
+
+### Backend-Specific Optimization Guides
+
+For optimal performance, consider the following tips for each backend:
+- **CUDA**: Utilize cuDNN for optimized neural network operations.
+- **OpenCL**: Ensure your kernels are optimized for the specific hardware you are using.
+- **METAL**: Leverage Metal Performance Shaders for enhanced performance on Apple devices.
+
 ### LLaMA and Stable Diffusion
 
 tinygrad can run [LLaMA](/docs/showcase.md#llama) and [Stable Diffusion](/docs/showcase.md#stable-diffusion)!
@@ -97,6 +111,49 @@ To check default accelerator run: `python3 -c "from tinygrad import Device; prin
 ## Installation
 
 The current recommended way to install tinygrad is from source.
+
+### Accelerator Dependencies
+
+Before installing tinygrad, ensure you have the necessary dependencies for your desired accelerator. Here are the common dependencies:
+
+- **GPU (OpenCL)**: Ensure you have OpenCL installed and configured on your system.
+- **CUDA**: Install the CUDA toolkit and ensure your GPU drivers are up to date.
+- **METAL**: Requires Xcode and the Metal framework on macOS.
+
+### From source
+
+```sh
+git clone https://github.com/tinygrad/tinygrad.git
+cd tinygrad
+python3 -m pip install -e .
+```
+
+### Direct (master)
+
+```sh
+python3 -m pip install git+https://github.com/tinygrad/tinygrad.git
+```
+
+### GPU/CUDA Setup Example
+
+To run tinygrad on a GPU, ensure you have the appropriate setup. Here’s a simple example:
+
+```python
+from tinygrad import Device
+
+# Check if GPU is available
+if Device.DEFAULT == 'gpu':
+    print('Running on GPU')
+else:
+    print('Running on CPU')
+```
+
+### Troubleshooting Common Accelerator Issues
+
+If you encounter issues while using different accelerators, consider the following:
+- Ensure your drivers are up to date.
+- Check compatibility of your hardware with the chosen accelerator.
+- Refer to the specific documentation for each accelerator for detailed troubleshooting steps.
 
 ### From source
 

@@ -6,11 +6,22 @@ Start up a notebook locally, or use [colab](https://colab.research.google.com/).
 
 ### One-liner to install tinygrad in colab
 
+For GPU support, ensure you have the necessary CUDA dependencies installed. You can check the CUDA version with `!nvcc --version` in a Colab cell. If you encounter issues, refer to the [CUDA installation guide](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html).
+
 ```python
 !pip install git+https://github.com/tinygrad/tinygrad.git
 ```
 
 ### What's the default device?
+
+To utilize GPU acceleration, ensure that your environment is set up correctly. You can check if CUDA is available by running:
+
+```python
+from tinygrad import Device
+print(Device.DEFAULT)
+```
+
+You will see `CUDA` here on a GPU instance, or `CPU` here on a CPU instance. If you see `CPU` and expect `CUDA`, check your installation and environment settings.
 
 ```python
 from tinygrad import Device
@@ -20,6 +31,15 @@ print(Device.DEFAULT)
 You will see `CUDA` here on a GPU instance, or `CPU` here on a CPU instance.
 
 ## A simple model
+
+When using a GPU, ensure that your model and data are transferred to the GPU. You can do this by calling `model.to(Device.DEFAULT)` and ensuring your tensors are on the correct device. For example:
+
+```python
+X_train = X_train.to(Device.DEFAULT)
+Y_train = Y_train.to(Device.DEFAULT)
+```
+
+This ensures that the model and data are compatible with GPU operations.
 
 We'll use the model from [the Keras tutorial](https://keras.io/examples/vision/mnist_convnet/).
 
@@ -173,6 +193,13 @@ step 1700, loss 0.14, acc 98.34%
 ```
 
 ## From here?
+
+For performance optimization, consider the following:
+- Use `with Context(BEAM=2)` to explore different kernel implementations for your hardware.
+- Profile your model's performance using the `GlobalCounters` to identify bottlenecks.
+- Experiment with different batch sizes and learning rates to find the optimal settings for your specific accelerator.
+
+For troubleshooting common accelerator issues, refer to the [tinygrad GitHub issues page](https://github.com/tinygrad/tinygrad/issues) for community support.
 
 tinygrad is yours to play with now. It's pure Python and short, so unlike PyTorch, fixing library bugs is well within your abilities.
 
