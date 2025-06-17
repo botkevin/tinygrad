@@ -98,6 +98,44 @@ To check default accelerator run: `python3 -c "from tinygrad import Device; prin
 
 The current recommended way to install tinygrad is from source.
 
+### Accelerator Dependencies
+
+Before installing tinygrad, ensure you have the necessary dependencies for your desired accelerator:
+
+- **GPU (OpenCL)**: Install OpenCL drivers for your GPU.
+- **CUDA**: Ensure you have the CUDA toolkit installed. Refer to the [NVIDIA CUDA installation guide](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html).
+- **METAL**: Requires Xcode and the Metal framework.
+
+### From source
+
+```sh
+git clone https://github.com/tinygrad/tinygrad.git
+cd tinygrad
+python3 -m pip install -e .
+```
+
+### Direct (master)
+
+```sh
+python3 -m pip install git+https://github.com/tinygrad/tinygrad.git
+```
+
+### GPU/CUDA Setup Example
+
+To run tinygrad on a GPU, ensure you have the CUDA toolkit installed and set up your environment accordingly. Here’s a simple example to test if CUDA is working:
+
+```python
+from tinygrad import Device
+print(Device.DEFAULT)  # Should output 'cuda' if CUDA is set up correctly
+```
+
+### Troubleshooting Common Accelerator Issues
+
+If you encounter issues with your accelerator, consider the following:
+- Ensure your drivers are up to date.
+- Check compatibility of your hardware with the chosen accelerator.
+- Refer to the specific documentation for your accelerator for additional troubleshooting steps.
+
 ### From source
 
 ```sh

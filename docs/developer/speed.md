@@ -44,6 +44,30 @@ In this case: with recompute (6 reads + 2 writes), no recompute (6 reads + 3 wri
 
 ## Kernel Speed (codegen)
 
+### Accelerator Setup Instructions
+
+To effectively utilize accelerators, ensure that you have the necessary dependencies installed. For CUDA, you need to have the NVIDIA CUDA Toolkit installed. For OpenCL, ensure you have the appropriate drivers for your hardware. For METAL, ensure you are on a compatible macOS version with Xcode installed.
+
+### Performance Comparison Examples
+
+Here are some examples comparing performance across different accelerators:
+
+- **CUDA vs. OpenCL**: In benchmarks, CUDA often shows better performance due to its optimized libraries and better integration with NVIDIA hardware.
+- **CPU vs. GPU**: For large matrix operations, GPUs can outperform CPUs significantly due to their parallel processing capabilities.
+
+### Backend-Specific Optimization Guides
+
+- **CUDA**: Utilize Tensor Cores for matrix operations to enhance performance. Ensure that your data is structured to take advantage of these cores.
+- **OpenCL**: Focus on optimizing memory access patterns to reduce latency.
+- **METAL**: Leverage the GPU's capabilities by minimizing CPU-GPU data transfers.
+
+### Troubleshooting Common Accelerator Issues
+
+If you encounter issues with your accelerator setup, consider the following:
+- Ensure that your drivers are up to date.
+- Check compatibility between your hardware and the installed libraries.
+- Review the error logs for specific messages that can guide you in resolving the issue.
+
 Given that you have decided how the model ops will be grouped and what will be written to memory, kernel speed determines how fast that operation is done. This is what BEAM changes, it searches over a set of equivalent kernels which all perform the same operation and finds the one which performs the task the fastest.
 
 In `kernel.py` we have a set of `OptOps`, these control the parameters of the speed optimizations applied to the kernel.
