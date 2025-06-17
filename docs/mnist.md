@@ -1,6 +1,6 @@
 # MNIST Tutorial
 
-After you have installed tinygrad, this is a great first tutorial.
+After you have installed tinygrad, this is a great first tutorial. Make sure to install the necessary dependencies for GPU acceleration, such as CUDA or OpenCL, depending on your hardware.
 
 Start up a notebook locally, or use [colab](https://colab.research.google.com/). tinygrad is very lightweight, so it's easy to install anywhere and doesn't need a special colab image, but for speed we recommend a T4 GPU image.
 
@@ -17,7 +17,7 @@ from tinygrad import Device
 print(Device.DEFAULT)
 ```
 
-You will see `CUDA` here on a GPU instance, or `CPU` here on a CPU instance.
+You will see `CUDA` here on a GPU instance, or `CPU` here on a CPU instance. Ensure that your environment is set up correctly to utilize the GPU, including the installation of the appropriate drivers and libraries.
 
 ## A simple model
 
@@ -52,7 +52,7 @@ print(X_train.shape, X_train.dtype, Y_train.shape, Y_train.dtype)
 # (60000, 1, 28, 28) dtypes.uchar (60000,) dtypes.uchar
 ```
 
-tinygrad includes MNIST, it only adds four lines. Feel free to read the [function](https://github.com/tinygrad/tinygrad/blob/master/tinygrad/nn/datasets.py).
+tinygrad includes MNIST, it only adds four lines. For GPU usage, ensure that the dataset is loaded onto the GPU by using the appropriate device context. Feel free to read the [function](https://github.com/tinygrad/tinygrad/blob/master/tinygrad/nn/datasets.py).
 
 ## Using the model
 
@@ -115,7 +115,7 @@ from tinygrad import TinyJit
 jit_step = TinyJit(step)
 ```
 
-NOTE: It can also be used as a decorator `@TinyJit`
+NOTE: It can also be used as a decorator `@TinyJit`. This can significantly improve performance on GPU by optimizing the execution of the training step.
 
 Now when we time it:
 
@@ -174,7 +174,7 @@ step 1700, loss 0.14, acc 98.34%
 
 ## From here?
 
-tinygrad is yours to play with now. It's pure Python and short, so unlike PyTorch, fixing library bugs is well within your abilities.
+tinygrad is yours to play with now. For optimal performance, consider exploring backend-specific optimization guides and troubleshooting common accelerator issues. It's pure Python and short, so unlike PyTorch, fixing library bugs is well within your abilities.
 
 - It's two lines to add multiGPU support to this example (can you find them?). You have to `.shard` the model to all GPUs, and `.shard` the dataset by batch.
 - `with Context(DEBUG=2)` shows the running kernels, `DEBUG=4` shows the code. All `Context` variables can also be environment variables.

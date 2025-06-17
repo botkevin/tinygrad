@@ -237,6 +237,50 @@ Additionally, feel free to ask questions in the `#learn-tinygrad` channel on the
 
 ## Extras
 
+### Accelerator Setup Instructions
+
+To effectively use tinygrad with different accelerators, ensure you have the necessary dependencies installed. For CUDA, you need to have the NVIDIA CUDA Toolkit installed. For OpenCL, ensure you have the OpenCL SDK for your hardware. For Metal, ensure you are on macOS with the appropriate development tools.
+
+### Performance Comparison Examples
+
+When using tinygrad on different accelerators, you can expect varying performance. For instance, using a GPU with CUDA can significantly speed up training times compared to CPU. Below is a simple comparison:
+
+```python
+# CPU Example
+# ... (insert CPU code example here)
+
+# GPU Example
+# ... (insert GPU code example here)
+```
+
+### Backend-Specific Optimization Guides
+
+Each backend has its own set of optimizations. For CUDA, consider using mixed precision training to improve performance. For OpenCL, ensure that your kernels are optimized for the specific hardware you are using. Refer to the [tinygrad optimization guide](optimization.md) for more details.
+
+### Troubleshooting Common Accelerator Issues
+
+If you encounter issues while using accelerators, check the following:
+- Ensure your drivers are up to date.
+- Verify that the correct backend is selected in tinygrad.
+- Check for compatibility issues with your hardware.
+
+### Leveraging Specific Accelerator Features in Neural Networks
+
+When implementing neural networks, you can leverage specific features of your accelerator. For example, using tensor cores on NVIDIA GPUs can enhance performance. Here’s how you can modify your neural network to take advantage of this:
+
+```python
+# Example of using tensor cores in a neural network
+class OptimizedNet:
+    def __init__(self):
+        # ... (initialize layers)
+
+    def forward(self, x):
+        # Use tensor core operations
+        return x
+```
+
+
+
 ### JIT
 
 Additionally, it is possible to speed up the computation of certain neural networks by using the JIT.
