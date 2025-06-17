@@ -1,6 +1,6 @@
 # MNIST Tutorial
 
-After you have installed tinygrad, including the necessary dependencies for GPU support, this is a great first tutorial.
+After you have installed tinygrad, including the necessary dependencies for GPU support (such as the CUDA toolkit and appropriate drivers), this is a great first tutorial.
 
 Start up a notebook locally, or use [colab](https://colab.research.google.com/). tinygrad is very lightweight, so it's easy to install anywhere and doesn't need a special colab image, but for speed we recommend a T4 GPU image.
 
@@ -12,7 +12,7 @@ Start up a notebook locally, or use [colab](https://colab.research.google.com/).
 
 ### What's the default device?
 
-To use a GPU, ensure you have installed the CUDA toolkit and the appropriate drivers. You can check your installation by running the following command:
+To use a GPU, ensure you have installed the CUDA toolkit and the appropriate drivers. For detailed instructions on setting up CUDA, please refer to the backend-specific optimization guides. You can check your installation by running the following command:
 
 ```python
 from tinygrad import Device
@@ -117,7 +117,7 @@ with Context(DEBUG=2): step()
 
 ### Why so slow?
 
-If you are using a GPU, ensure that you have the latest CUDA toolkit installed. Performance can vary significantly based on the GPU model and the configuration of the CUDA environment. Refer to the performance optimization guide for tips on improving speed.
+If you are using a GPU, ensure that you have the latest CUDA toolkit installed. Performance can vary significantly based on the GPU model and the configuration of the CUDA environment. Refer to the performance optimization guide for tips on improving speed, including performance comparison examples for different accelerators.
 
 Unlike PyTorch, tinygrad isn't designed to be fast like that. While 75 ms for one step is plenty fast for debugging, it's not great for training. Here, we introduce the first quintessentially tinygrad concept, the `TinyJit`.
 
@@ -185,7 +185,7 @@ step 1700, loss 0.14, acc 98.34%
 
 ## From here?
 
-For detailed instructions on setting up different backends like OpenCL, CUDA, and METAL, please refer to the backend-specific optimization guides. Additionally, if you encounter issues, check the troubleshooting section for common accelerator problems.
+For detailed instructions on setting up different backends like OpenCL, CUDA, and METAL, including troubleshooting common accelerator issues, please refer to the backend-specific optimization guides. Additionally, if you encounter issues, check the troubleshooting section for common accelerator problems.
 
 tinygrad is yours to play with now. It's pure Python and short, so unlike PyTorch, fixing library bugs is well within your abilities.
 

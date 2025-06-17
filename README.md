@@ -102,12 +102,12 @@ The current recommended way to install tinygrad is from source.
 
 To use different accelerators, you need to install the following dependencies:
 
-- **GPU (OpenCL)**: Install OpenCL SDK from your GPU vendor's website.
-- **CUDA**: Ensure you have the CUDA toolkit installed. You can download it from the [NVIDIA website](https://developer.nvidia.com/cuda-downloads).
-- **METAL**: Requires Xcode and the Metal framework.
-- **LLVM**: Install LLVM via your package manager or from the [LLVM website](https://llvm.org/).
+- **GPU (OpenCL)**: Install the OpenCL SDK from your GPU vendor's website (e.g., AMD, NVIDIA, Intel). This SDK provides the necessary libraries and tools to run OpenCL applications.
+- **CUDA**: Ensure you have the CUDA toolkit installed. You can download it from the [NVIDIA website](https://developer.nvidia.com/cuda-downloads). This toolkit is essential for running CUDA applications on NVIDIA GPUs.
+- **METAL**: Requires Xcode and the Metal framework. Xcode can be downloaded from the Mac App Store, and the Metal framework is included with it.
+- **LLVM**: Install LLVM via your package manager or from the [LLVM website](https://llvm.org/). LLVM is used for compiling code for various architectures.
 
-Make sure to check the compatibility of these dependencies with your system before installation.
+Make sure to check the compatibility of these dependencies with your system before installation. Additionally, ensure that your GPU drivers are up to date to avoid compatibility issues.
 
 ### From source
 
