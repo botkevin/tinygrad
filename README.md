@@ -98,6 +98,17 @@ To check default accelerator run: `python3 -c "from tinygrad import Device; prin
 
 The current recommended way to install tinygrad is from source.
 
+### Accelerator Dependencies
+
+To use different accelerators, you need to install the following dependencies:
+
+- **GPU (OpenCL)**: Install the OpenCL SDK from your GPU vendor's website (e.g., AMD, NVIDIA, Intel). This SDK provides the necessary libraries and tools to run OpenCL applications.
+- **CUDA**: Ensure you have the CUDA toolkit installed. You can download it from the [NVIDIA website](https://developer.nvidia.com/cuda-downloads). This toolkit is essential for running CUDA applications on NVIDIA GPUs.
+- **METAL**: Requires Xcode and the Metal framework. Xcode can be downloaded from the Mac App Store, and the Metal framework is included with it.
+- **LLVM**: Install LLVM via your package manager or from the [LLVM website](https://llvm.org/). LLVM is used for compiling code for various architectures.
+
+Make sure to check the compatibility of these dependencies with your system before installation. Additionally, ensure that your GPU drivers are up to date to avoid compatibility issues.
+
 ### From source
 
 ```sh
@@ -117,6 +128,27 @@ python3 -m pip install git+https://github.com/tinygrad/tinygrad.git
 Documentation along with a quick start guide can be found on the [docs website](https://docs.tinygrad.org/) built from the [docs/](/docs) directory.
 
 ### Quick example comparing to PyTorch
+
+#### GPU Example
+
+Here’s how to set up a simple example using CUDA:
+
+```python
+from tinygrad import Tensor, Device
+
+# Ensure you are using the GPU
+Device.DEFAULT = 'cuda'
+
+x = Tensor.eye(3, requires_grad=True)
+y = Tensor([[2.0,0,-2.0]], requires_grad=True)
+z = y.matmul(x).sum()
+z.backward()
+
+print(x.grad.tolist())  # dz/dx
+print(y.grad.tolist())  # dz/dy
+```
+
+This example demonstrates how to leverage the GPU for computations. Make sure your CUDA environment is properly set up before running this code.
 
 ```python
 from tinygrad import Tensor
